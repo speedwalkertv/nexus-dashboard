@@ -2,8 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-creme font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-terracota text-creme;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-terracota ring-offset-2 ring-offset-creme;
+  }
+
+  .dark-section :focus-visible {
+    @apply ring-dourado ring-offset-ink;
+  }
 }
 
-html, body { height: 100%; }
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+
+  /* Filete dourado usado como divisor e detalhe de seção. */
+  .filete {
+    @apply h-px w-12 bg-gradient-to-r from-dourado to-transparent;
+  }
+
+  .rotulo {
+    @apply text-xs font-medium uppercase tracking-[0.2em] text-terracota;
+  }
+
+  .dark-section .rotulo {
+    @apply text-dourado;
+  }
+}
+
+/* Nada de seção em branco no papel. */
+@media print {
+  .reveal-oculto {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

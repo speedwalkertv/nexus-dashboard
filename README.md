@@ -1,58 +1,72 @@
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=20,6,12&height=200&section=header&text=Nexus%20Dashboard&fontSize=60&fontAlignY=40&desc=Real-time%20analytics%20dashboard%20with%20Apple-grade%20motion&descAlignY=70&fontColor=ffffff&animation=fadeIn" width="100%"/>
-</div>
+# Geovana Santos — Espaço de Beleza
 
-<div align="center">
+Site de agendamento online do espaço. A pessoa escolhe o serviço, o dia e o
+horário, e o pedido chega pronto no WhatsApp.
 
-![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind](https://img.shields.io/badge/Tailwind-3-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer%20Motion-11-FF0090?style=for-the-badge)
+## Antes de publicar: edite `lib/business.ts`
 
-</div>
+Os dados abaixo estão com valores de exemplo e **precisam ser trocados**:
 
-## ✨ O que é
+| Campo | O que é |
+|---|---|
+| `whatsapp` | Número que recebe os agendamentos, só dígitos: `55` + DDD + número |
+| `whatsappExibicao` | O mesmo número formatado para leitura |
+| `instagram` / `instagramUrl` | Perfil do espaço |
+| `endereco` | Rua, cidade e link do Google Maps |
+| `expediente` | Horário de abertura e fechamento de cada dia (`null` = fechado) |
 
-Dashboard de analytics em tempo real com **glassmorphism**, **micro-interações Apple-like** e WebSockets pra updates ao vivo. Pensado pra ser o tipo de UI que o stakeholder pede pra demonstrar pro CEO.
+Ao mudar o `expediente`, atualize também `horarioResumo` no mesmo arquivo — é
+ele que aparece na seção de contato.
 
-## 🎯 Highlights
+## Serviços e preços
 
-- **Real-time** — WebSockets via Server-Sent Events
-- **Motion** — entradas escalonadas, hover springs, parallax
-- **Theming** — dark/light com `next-themes` + transições suaves
-- **Acessível** — WCAG AA, navegação por teclado completa
-- **100/100 Lighthouse** — performance budget rígido
+Tudo vive em `lib/services.ts`. Cada serviço tem:
 
-## 🚀 Quick start
+- `preco` — em reais, ou `null` para "Sob consulta"
+- `aPartirDe` — mostra "a partir de R$ X"
+- `duracaoMin` — **estimativa** de quanto tempo o horário fica reservado.
+  A agenda usa esse número para só oferecer horários em que o serviço cabe
+  inteiro antes do fechamento, então vale ajustar conforme a sua rotina real.
+- `opcoes` — variações da mesma técnica (aparecem como etiquetas)
+- `inclui` — o que está incluso no serviço
+
+Mexer nesse arquivo já atualiza a vitrine de preços, o passo 1 do agendamento e
+os dados estruturados que o Google lê.
+
+## Como o agendamento funciona
+
+1. **Serviço** — lista completa com preço e duração
+2. **Dia** — só aparecem dias abertos que ainda comportam o serviço
+3. **Horário** — gerado a partir do expediente, em intervalos de 30 min,
+   com 1 hora de antecedência mínima para o mesmo dia
+4. **Dados** — nome e observação, e o botão que abre o WhatsApp com tudo escrito
+
+Não há banco de dados: o site monta o pedido, e a confirmação continua sendo
+feita por você na conversa. Se um dia a agenda precisar bloquear horários já
+ocupados, é aqui (`lib/booking.ts`) que a integração entra.
+
+## Rodando
 
 ```bash
-git clone https://github.com/gaab-dev/nexus-dashboard
-cd nexus-dashboard
-pnpm install
-pnpm dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # build de produção
+npm run typecheck
 ```
 
-Abre em `http://localhost:3000`.
+## Stack
 
-## 🏗️ Stack
+Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion (transições do
+agendamento) e `next/font` para as fontes Cormorant Garamond e Jost.
 
-| Camada      | Escolha                                  |
-|-------------|------------------------------------------|
-| Framework   | Next.js 15 (App Router, Server Actions)  |
-| Styling     | Tailwind CSS + tailwind-merge + clsx     |
-| Motion      | Framer Motion (springs físicos)          |
-| Charts      | Recharts + custom D3 layers              |
-| State       | Zustand (server-state via TanStack Query)|
-| Realtime    | Server-Sent Events                       |
-| Type-safety | TypeScript strict + Zod                  |
+## Estrutura
 
-## 📐 Princípios de design
-
-1. **Contraste antes da decoração** — leitura ≥ 4.5:1 sempre
-2. **Motion serve a função** — animação revela hierarquia, nunca enfeita
-3. **Density progressiva** — info crítica grande, detalhes a um clique
-4. **Estados explícitos** — loading, empty, error, success — todos desenhados
-
-## 📄 Licença
-
-MIT © Felipe Gabriel ([@gaab-dev](https://github.com/gaab-dev))
+```
+app/            layout, estilos e a página única
+components/
+  booking/      fluxo de agendamento (contexto + 4 etapas + resumo)
+  sections/     hero, serviços, como funciona, sobre, dúvidas, contato
+  ui/           botão e animação de entrada
+lib/            dados do negócio, catálogo de serviços e regras da agenda
+public/         logo e fotos
+```
