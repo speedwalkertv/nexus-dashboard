@@ -12,8 +12,8 @@ export const business = {
   whatsapp: "558888781086",
   whatsappExibicao: "(88) 8878-1086",
 
-  instagram: "geovanasantos.espacodebeleza",
-  instagramUrl: "https://instagram.com/geovanasantos.espacodebeleza",
+  instagram: "geovanasantosespacodebeleza",
+  instagramUrl: "https://instagram.com/geovanasantosespacodebeleza",
 
   endereco: {
     linha1: "Rua Exemplo, 123 — Centro",
