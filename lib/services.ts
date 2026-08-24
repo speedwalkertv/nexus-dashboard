@@ -5,6 +5,7 @@ export type CategoriaId =
   | "unhas"
   | "pes"
   | "cabelo"
+  | "penteados"
   | "trancas";
 
 export type Servico = {
@@ -15,6 +16,8 @@ export type Servico = {
   preco: number | null;
   /** Quando true, o valor é exibido como "a partir de". */
   aPartirDe?: boolean;
+  /** Texto no lugar do valor, para serviços sem preço fixo. */
+  precoTexto?: string;
   /** Estimativa de reserva na agenda — ajuste conforme sua rotina. */
   duracaoMin: number;
   descricao?: string;
@@ -29,7 +32,8 @@ export const categorias: { id: CategoriaId; nome: string; resumo: string }[] = [
   { id: "unhas", nome: "Unhas", resumo: "Alongamento com acabamento impecável" },
   { id: "pes", nome: "Pés", resumo: "Cuidado completo, do calo à esmaltação" },
   { id: "cabelo", nome: "Cabelo", resumo: "Lavagem, hidratação e cuidado com cachos" },
-  { id: "trancas", nome: "Tranças", resumo: "Fibras orgânicas aplicadas com técnica" },
+  { id: "penteados", nome: "Penteados", resumo: "Montado na hora, do preso ao solto" },
+  { id: "trancas", nome: "Tranças", resumo: "Nagô e fibras orgânicas aplicadas com técnica" },
 ];
 
 export const servicos: Servico[] = [
@@ -118,6 +122,24 @@ export const servicos: Servico[] = [
     descricao: "O valor varia conforme o comprimento e o volume do cabelo.",
   },
   {
+    id: "penteados",
+    nome: "Penteados",
+    categoria: "penteados",
+    preco: null,
+    precoTexto: "Depende do modelo",
+    duracaoMin: 60,
+    descricao: "O valor é fechado no WhatsApp, conforme o modelo que você escolher.",
+  },
+  {
+    id: "trancas-nago",
+    nome: "Tranças nagô",
+    categoria: "trancas",
+    preco: null,
+    precoTexto: "Depende do modelo",
+    duracaoMin: 240,
+    descricao: "Desenho combinado antes de começar. O valor é fechado no WhatsApp.",
+  },
+  {
     id: "trancas-fibras",
     nome: "Aplicação de fibras orgânicas",
     categoria: "trancas",
@@ -137,6 +159,7 @@ export function servicosPorCategoria(categoria: CategoriaId) {
 }
 
 export function precoLabel(servico: Servico) {
+  if (servico.precoTexto) return servico.precoTexto;
   if (servico.preco === null) return "Sob consulta";
   const valor = servico.preco.toLocaleString("pt-BR", {
     style: "currency",
