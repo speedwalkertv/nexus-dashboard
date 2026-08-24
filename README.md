@@ -45,6 +45,18 @@ Não há banco de dados: o site monta o pedido, e a confirmação continua sendo
 feita por você na conversa. Se um dia a agenda precisar bloquear horários já
 ocupados, é aqui (`lib/booking.ts`) que a integração entra.
 
+## Link de visualização (sem servidor)
+
+```bash
+node --experimental-strip-types scripts/preview.mjs
+```
+
+Gera `preview/index.html`: o site inteiro num arquivo só, com as fotos
+embutidas, para mandar por WhatsApp ou publicar como página avulsa. Os dados
+saem de `lib/business.ts` e `lib/services.ts`, os mesmos do site — mudou preço
+lá, é só gerar de novo. A regra de horários é reescrita em JS de navegador
+dentro do script: se mexer em `lib/booking.ts`, ajuste `regrasDeAgenda` junto.
+
 ## Rodando
 
 ```bash
