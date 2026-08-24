@@ -28,12 +28,12 @@ export const business = {
    */
   expediente: {
     0: null,
-    1: { abre: "09:00", fecha: "18:00" },
-    2: { abre: "09:00", fecha: "18:00" },
-    3: { abre: "09:00", fecha: "18:00" },
-    4: { abre: "09:00", fecha: "18:00" },
-    5: { abre: "09:00", fecha: "19:00" },
-    6: { abre: "08:00", fecha: "16:00" },
+    1: { abre: "09:00", fecha: "21:00" },
+    2: { abre: "09:00", fecha: "21:00" },
+    3: { abre: "09:00", fecha: "21:00" },
+    4: { abre: "09:00", fecha: "21:00" },
+    5: { abre: "09:00", fecha: "21:00" },
+    6: { abre: "09:00", fecha: "21:00" },
   } as Record<number, { abre: string; fecha: string } | null>,
 
   intervaloMinutos: 30,
@@ -43,8 +43,6 @@ export const business = {
 } as const;
 
 export const horarioResumo = [
-  { dias: "Segunda a quinta", horas: "09h — 18h" },
-  { dias: "Sexta", horas: "09h — 19h" },
-  { dias: "Sábado", horas: "08h — 16h" },
+  { dias: "Segunda a sábado", horas: "09h — 21h" },
   { dias: "Domingo", horas: "Fechado" },
 ];
