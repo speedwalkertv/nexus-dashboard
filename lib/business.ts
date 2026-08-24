@@ -16,9 +16,10 @@ export const business = {
   instagramUrl: "https://instagram.com/geovanasantosespacodebeleza",
 
   endereco: {
-    linha1: "Rua Exemplo, 123 — Centro",
-    linha2: "Quixeramobim — CE",
-    mapsUrl: "https://maps.google.com/?q=Quixeramobim+CE",
+    linha1: "Rua José Cipriano, 235",
+    linha2: "Centro — Quixeramobim, CE",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Rua+Jose+Cipriano+235+Centro+Quixeramobim+CE",
   },
 
   /**

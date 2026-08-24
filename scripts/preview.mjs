@@ -596,11 +596,11 @@ html { scroll-behavior: smooth; }
         <p class="endereco">
           ${escapar(business.endereco.linha1)}<br>
           ${escapar(business.endereco.linha2)}<br>
-          <a href="${business.endereco.mapsUrl}" target="_blank" rel="noopener noreferrer">Abrir no mapa</a>
+          <a href="${escapar(business.endereco.mapsUrl)}" target="_blank" rel="noopener noreferrer">Abrir no mapa</a>
         </p>
         <div class="contato-ctas">
           <a class="botao" id="cta-whatsapp" href="#" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-          <a class="botao contorno-escuro" href="${business.instagramUrl}" target="_blank" rel="noopener noreferrer">@${escapar(business.instagram)}</a>
+          <a class="botao contorno-escuro" href="${escapar(business.instagramUrl)}" target="_blank" rel="noopener noreferrer">@${escapar(business.instagram)}</a>
         </div>
       </div>
       <div class="horarios">
