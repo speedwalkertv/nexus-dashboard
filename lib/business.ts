@@ -9,8 +9,8 @@ export const business = {
   profissional: "Geovana Santos",
 
   // Formato internacional, só dígitos: 55 + DDD + número.
-  whatsapp: "5588000000000",
-  whatsappExibicao: "(88) 0 0000-0000",
+  whatsapp: "558888781086",
+  whatsappExibicao: "(88) 8878-1086",
 
   instagram: "geovanasantos.espacodebeleza",
   instagramUrl: "https://instagram.com/geovanasantos.espacodebeleza",
