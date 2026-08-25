@@ -49,6 +49,7 @@ export const servicos: Servico[] = [
     preco: 30,
     duracaoMin: 40,
     descricao: "Design personalizado com preenchimento em henna para marcar as falhas.",
+    imagem: "/servicos/sobrancelhas.jpg",
   },
   {
     id: "sobrancelha-simples",
@@ -67,6 +68,7 @@ export const servicos: Servico[] = [
     duracaoMin: 90,
     descricao: "Técnica escolhida na consulta, conforme o efeito que você quer.",
     opcoes: ["Tufinho", "Volume russo", "Fox", "Brasileiro"],
+    imagem: "/servicos/cilios.jpg",
   },
   {
     id: "maquiagem",
@@ -75,6 +77,7 @@ export const servicos: Servico[] = [
     preco: 65,
     duracaoMin: 60,
     descricao: "Pele preparada, olhos alinhados com a produção e fixação para o dia inteiro.",
+    imagem: "/servicos/maquiagem.jpg",
   },
   {
     id: "unhas-gel-tips",
@@ -83,6 +86,7 @@ export const servicos: Servico[] = [
     preco: 130,
     duracaoMin: 150,
     descricao: "Alongamento estruturado em gel com acabamento e esmaltação.",
+    imagem: "/servicos/unhas-gel.jpg",
   },
   {
     id: "unhas-molde-f1",
@@ -91,6 +95,7 @@ export const servicos: Servico[] = [
     preco: 100,
     duracaoMin: 120,
     descricao: "Construção no molde F1 com curvatura desenhada mão a mão.",
+    imagem: "/servicos/unhas-molde.jpg",
   },
   {
     id: "unhas-simples",
@@ -99,6 +104,7 @@ export const servicos: Servico[] = [
     preco: null,
     duracaoMin: 60,
     descricao: "Cutilagem e esmaltação. Valor combinado no atendimento.",
+    imagem: "/servicos/unhas-simples.jpg",
   },
   {
     id: "spa-pes",
@@ -108,6 +114,7 @@ export const servicos: Servico[] = [
     duracaoMin: 60,
     descricao: "Cinco etapas em um único atendimento.",
     inclui: ["Hidratação", "Esfoliação", "Lixamento de calos", "Cutilagem", "Esmaltação"],
+    imagem: "/servicos/spa-pes.jpg",
   },
   {
     id: "escova-hidratacao",
@@ -125,6 +132,7 @@ export const servicos: Servico[] = [
     aPartirDe: true,
     duracaoMin: 120,
     descricao: "O valor varia conforme o comprimento e o volume do cabelo.",
+    imagem: "/servicos/cachos.jpg",
   },
   {
     id: "penteados",
@@ -143,6 +151,7 @@ export const servicos: Servico[] = [
     precoTexto: "Depende do modelo",
     duracaoMin: 240,
     descricao: "Desenho combinado antes de começar. O valor é fechado no WhatsApp.",
+    imagem: "/servicos/trancas.jpg",
   },
   {
     id: "trancas-fibras",
