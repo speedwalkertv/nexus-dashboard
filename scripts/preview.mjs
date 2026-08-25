@@ -15,6 +15,7 @@ import { fileURLToPath } from "node:url";
 
 import { business, horarioResumo } from "../lib/business.ts";
 import { categorias, servicos, duracaoLabel, precoLabel } from "../lib/services.ts";
+import { creditosFotos } from "../lib/fotos.ts";
 
 const raiz = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const saida = resolve(process.argv[2] ?? `${raiz}/preview/index.html`);
@@ -248,7 +249,7 @@ a, button { font-family: inherit; }
 }
 .topo .container { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; gap: 1rem; }
 .marca { display: flex; align-items: center; gap: .75rem; text-decoration: none; color: inherit; }
-.marca img { width: 2.75rem; height: 2.75rem; border-radius: 999px; object-fit: cover; object-position: center 53%; }
+.marca img { width: 2.75rem; height: 2.75rem; border-radius: 999px; object-fit: cover; }
 .marca strong { display: block; font-family: var(--display); font-size: 1.25rem; font-weight: 500; letter-spacing: .02em; }
 .marca .assinatura { display: block; font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; color: rgba(23,16,13,.5); }
 .nav { display: none; align-items: center; gap: 2rem; }
@@ -464,7 +465,13 @@ footer { background: var(--ink); color: var(--creme); padding: 3.5rem 0; }
 .rodape nav ul { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
 .rodape nav a { color: rgba(251,245,239,.6); text-decoration: none; font-size: .9rem; }
 .rodape nav a:hover { color: var(--dourado); }
-.creditos { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(251,245,239,.1); font-size: .75rem; color: rgba(251,245,239,.4); }
+.creditos { margin-top: 1rem; font-size: .75rem; color: rgba(251,245,239,.4); }
+.creditos-fotos { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(251,245,239,.1); font-size: .75rem; color: rgba(251,245,239,.4); }
+.creditos-fotos summary { cursor: pointer; }
+.creditos-fotos summary:hover { color: var(--dourado); }
+.creditos-fotos p { margin-top: .75rem; max-width: 60ch; }
+.creditos-fotos ul { margin-top: .5rem; display: grid; gap: .25rem; }
+.creditos-fotos a { color: rgba(251,245,239,.6); }
 
 .flutuante {
   position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 40;
@@ -486,7 +493,7 @@ html { scroll-behavior: smooth; }
 <header class="topo">
   <div class="container">
     <a class="marca" href="#topo">
-      <img src="${foto("logo.jpg")}" alt="">
+      <img src="${foto("logo-monograma.jpg")}" alt="">
       <span class="texto-marca">
         <strong>${escapar(business.nome)}</strong>
         <span class="assinatura">${escapar(business.assinatura)}</span>
@@ -663,7 +670,7 @@ html { scroll-behavior: smooth; }
   <div class="container">
     <div class="rodape">
       <div class="marca">
-        <img src="${foto("logo.jpg")}" alt="">
+        <img src="${foto("logo-monograma.jpg")}" alt="">
         <span>
           <strong style="font-family:var(--display);font-size:1.5rem">${escapar(business.nome)}</strong>
           <span class="assinatura">${escapar(business.assinatura)}</span>

@@ -142,6 +142,7 @@ export const servicos: Servico[] = [
     precoTexto: "Depende do modelo",
     duracaoMin: 60,
     descricao: "O valor é fechado no WhatsApp, conforme o modelo que você escolher.",
+    imagem: "/servicos/penteados.jpg",
   },
   {
     id: "trancas-nago",
@@ -161,6 +162,7 @@ export const servicos: Servico[] = [
     duracaoMin: 300,
     descricao: "Valor único para qualquer uma das técnicas.",
     opcoes: ["Twist Braids", "Crochet Braids", "Box Braids", "Ghana Braids"],
+    imagem: "/servicos/trancas-fibras.jpg",
   },
 ];
 

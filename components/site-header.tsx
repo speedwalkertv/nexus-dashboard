@@ -37,11 +37,11 @@ export function SiteHeader() {
       <div className="container-x flex h-16 items-center justify-between gap-4 sm:h-20">
         <a href="#topo" className="flex items-center gap-3" onClick={() => setAberto(false)}>
           <Image
-            src="/logo.jpg"
+            src="/logo-monograma.jpg"
             alt=""
             width={44}
             height={44}
-            className="h-10 w-10 rounded-full object-cover object-[center_53%] sm:h-11 sm:w-11"
+            className="h-10 w-10 rounded-full object-cover sm:h-11 sm:w-11"
             priority
           />
           <span className="leading-tight">

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Instagram, MessageCircle } from "lucide-react";
 import { linkWhatsApp } from "@/lib/booking";
 import { business } from "@/lib/business";
@@ -19,11 +20,11 @@ export function SiteFooter() {
         <div className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
             <Image
-              src="/logo.jpg"
+              src="/logo-monograma.jpg"
               alt=""
               width={56}
               height={56}
-              className="h-14 w-14 rounded-full object-cover object-[center_53%]"
+              className="h-14 w-14 rounded-full object-cover"
             />
             <div>
               <p className="font-display text-2xl">{business.nome}</p>
@@ -67,10 +68,15 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <p className="mt-10 border-t border-creme/10 pt-6 text-xs text-creme/40">
-          © {new Date().getFullYear()} {business.nome} — {business.assinatura}. Todos os direitos
-          reservados.
-        </p>
+        <div className="mt-10 flex flex-col gap-2 border-t border-creme/10 pt-6 text-xs text-creme/40 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {business.nome} — {business.assinatura}. Todos os
+            direitos reservados.
+          </p>
+          <Link href="/creditos" className="transition hover:text-dourado">
+            Créditos das fotos
+          </Link>
+        </div>
       </div>
     </footer>
   );

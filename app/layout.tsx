@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     images: [{ url: "/geovana-hero.jpg", width: 1451, height: 1084, alt: business.nome }],
   },
-  icons: { icon: "/logo.jpg", apple: "/logo.jpg" },
+  icons: { icon: "/logo-monograma.jpg", apple: "/logo-monograma.jpg" },
 };
 
 export const viewport: Viewport = {
