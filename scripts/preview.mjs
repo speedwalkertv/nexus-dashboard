@@ -305,7 +305,7 @@ section { padding: 4.5rem 0; }
   border: 1px solid rgba(229,211,194,.7); border-radius: 1rem; background: rgba(255,255,255,.6);
   transition: border-color .2s, box-shadow .2s;
 }
-.card-visual { position: relative; aspect-ratio: 16/9; width: 100%; }
+.card-visual { position: relative; aspect-ratio: 1; width: 100%; }
 .card-foto { width: 100%; height: 100%; object-fit: cover; display: block; }
 .card-arte {
   display: grid; place-items: center; width: 100%; height: 100%;

@@ -49,7 +49,7 @@ export const servicos: Servico[] = [
     preco: 30,
     duracaoMin: 40,
     descricao: "Design personalizado com preenchimento em henna para marcar as falhas.",
-    imagem: "/servicos/sobrancelhas.jpg",
+    imagem: "/servicos/sobrancelha-henna.jpg",
   },
   {
     id: "sobrancelha-simples",
@@ -58,6 +58,7 @@ export const servicos: Servico[] = [
     preco: 20,
     duracaoMin: 30,
     descricao: "Correção do formato com medição de proporção do rosto.",
+    imagem: "/servicos/sobrancelha-sem-henna.jpg",
   },
   {
     id: "cilios-extensao",
@@ -98,13 +99,22 @@ export const servicos: Servico[] = [
     imagem: "/servicos/unhas-molde.jpg",
   },
   {
-    id: "unhas-simples",
-    nome: "Unhas simples",
+    id: "unhas-banho-gel",
+    nome: "Banho em gel na unha natural",
     categoria: "unhas",
-    preco: null,
+    preco: 65,
+    duracaoMin: 90,
+    descricao: "Cobertura em gel sobre a unha natural, com brilho e resistência de alongamento.",
+    imagem: "/servicos/unhas-banho-gel.jpg",
+  },
+  {
+    id: "unhas-simples",
+    nome: "Unhas naturais da mão",
+    categoria: "unhas",
+    preco: 20,
     duracaoMin: 60,
-    descricao: "Cutilagem e esmaltação. Valor combinado no atendimento.",
-    imagem: "/servicos/unhas-simples.jpg",
+    descricao: "Cutilagem, lixamento e esmaltação na unha natural.",
+    imagem: "/servicos/unhas-naturais.jpg",
   },
   {
     id: "spa-pes",
@@ -123,6 +133,7 @@ export const servicos: Servico[] = [
     preco: 70,
     duracaoMin: 90,
     descricao: "Lavagem, máscara de hidratação e finalização em escova.",
+    imagem: "/servicos/escova.jpg",
   },
   {
     id: "cachos",
@@ -152,7 +163,7 @@ export const servicos: Servico[] = [
     precoTexto: "Depende do modelo",
     duracaoMin: 240,
     descricao: "Desenho combinado antes de começar. O valor é fechado no WhatsApp.",
-    imagem: "/servicos/trancas.jpg",
+    imagem: "/servicos/trancas-nago.jpg",
   },
   {
     id: "trancas-fibras",
@@ -162,7 +173,7 @@ export const servicos: Servico[] = [
     duracaoMin: 300,
     descricao: "Valor único para qualquer uma das técnicas.",
     opcoes: ["Twist Braids", "Crochet Braids", "Box Braids", "Ghana Braids"],
-    imagem: "/servicos/trancas-fibras.jpg",
+    imagem: "/servicos/fibras.jpg",
   },
 ];
 

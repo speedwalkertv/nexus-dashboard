@@ -48,9 +48,14 @@ Para colocar a foto real:
 imagem: "/servicos/cilios.jpg",
 ```
 
-O card é cortado em 16:9, então a melhor foto é horizontal, com o trabalho no
-centro. Algo em torno de 1200x675 px já basta — arquivos muito grandes só
+O card é **quadrado**, então funciona bem com a foto vertical que sai do
+celular: o corte pega o centro, e o script ajusta o foco vertical quando o
+enquadramento pede. Cerca de 900x900 px já basta — arquivos muito grandes só
 deixam o site lento.
+
+Depois de trocar uma foto mantendo o mesmo nome de arquivo, apague `.next/`
+antes de rodar de novo: o Next guarda a imagem otimizada em cache pela URL e
+continuaria servindo a antiga.
 
 ## Como o agendamento funciona
 

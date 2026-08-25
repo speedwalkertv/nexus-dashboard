@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Instagram, MessageCircle } from "lucide-react";
 import { linkWhatsApp } from "@/lib/booking";
 import { business } from "@/lib/business";
+import { creditosFotos } from "@/lib/fotos";
 
 const links = [
   { href: "#servicos", rotulo: "Serviços" },
@@ -73,9 +74,11 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {business.nome} — {business.assinatura}. Todos os
             direitos reservados.
           </p>
-          <Link href="/creditos" className="transition hover:text-dourado">
-            Créditos das fotos
-          </Link>
+          {creditosFotos.length > 0 && (
+            <Link href="/creditos" className="transition hover:text-dourado">
+              Créditos das fotos
+            </Link>
+          )}
         </div>
       </div>
     </footer>

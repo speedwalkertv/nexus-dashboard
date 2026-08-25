@@ -49,7 +49,7 @@ export function Servicos() {
                         key={servico.id}
                         className="flex flex-col overflow-hidden rounded-2xl border border-creme-300/70 bg-white/60 transition duration-200 ease-suave hover:border-terracota/40 hover:shadow-[0_12px_40px_-24px_rgba(23,16,13,0.5)]"
                       >
-                        <div className="relative aspect-[16/9] w-full">
+                        <div className="relative aspect-square w-full">
                           {servico.imagem ? (
                             <Image
                               src={servico.imagem}
