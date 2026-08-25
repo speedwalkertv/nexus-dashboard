@@ -23,6 +23,11 @@ export type Servico = {
   descricao?: string;
   inclui?: string[];
   opcoes?: string[];
+  /**
+   * Foto do serviço, em /public/servicos. Ex.: "/servicos/cilios.jpg".
+   * Sem foto, o card mostra a arte de marca da categoria.
+   */
+  imagem?: string;
 };
 
 export const categorias: { id: CategoriaId; nome: string; resumo: string }[] = [

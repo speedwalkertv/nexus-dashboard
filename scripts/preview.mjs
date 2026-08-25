@@ -30,6 +30,33 @@ const dados = {
   servicos: servicos.map((s) => ({ ...s, precoLabel: precoLabel(s), duracaoLabel: duracaoLabel(s.duracaoMin) })),
 };
 
+
+/** Arte de marca por categoria — espelha components/sections/arte-categoria.tsx. */
+const desenhos = {
+  sobrancelhas: '<path d="M8 30c6-9 14-13 22-12 4 .5 8 2 10 4"/><path d="M12 25.5c5-5 12-7 18-6" opacity=".55"/><path d="M16 22v-4M22 19.5v-4.5M28 19v-4M34 20.5v-4" opacity=".8"/>',
+  cilios: '<path d="M6 26c8-9 16-13 24-13s16 4 18 13c-8 6-13 8-19 8S13 31 6 26z"/><circle cx="26" cy="26" r="5"/><path d="M12 15l-3-5M20 11l-2-6M29 10l1-6M38 12l3-5" opacity=".8"/>',
+  maquiagem: '<path d="M30 8l10 10-16 16-10-10z" opacity=".55"/><path d="M14 24l10 10-6 6c-3 3-8 3-11 0s-3-8 0-11z"/>',
+  unhas: '<path d="M18 14c0-4 3-6 6-6s6 2 6 6v14c0 4-3 7-6 7s-6-3-6-7z"/><path d="M18 22c4-2 8-2 12 0" opacity=".55"/><path d="M14 40c3-2 7-3 10-3s7 1 10 3" opacity=".8"/>',
+  pes: '<path d="M17 40c-3-4-4-9-3-15 1-5 4-8 8-8s7 3 7 8c0 6-2 11-4 15z"/><circle cx="33" cy="16" r="2.5" opacity=".8"/><circle cx="37" cy="21" r="2.2" opacity=".8"/><circle cx="39" cy="27" r="2" opacity=".8"/><path d="M12 12c3 1 4 4 3 7" opacity=".55"/>',
+  cabelo: '<path d="M12 10c6 6 6 14 2 20s-4 12 2 16"/><path d="M24 8c6 7 6 15 2 21s-4 11 2 15" opacity=".8"/><path d="M36 10c6 6 6 14 2 20s-4 12 2 16" opacity=".55"/>',
+  penteados: '<circle cx="24" cy="14" r="7"/><path d="M11 42c1-9 6-14 13-14s12 5 13 14"/><path d="M31 9c4-2 8 0 8 4s-4 6-7 5" opacity=".7"/>',
+  trancas: '<path d="M18 8c6 4 6 8 0 12s-6 8 0 12 6 8 0 12"/><path d="M30 8c-6 4-6 8 0 12s6 8 0 12-6 8 0 12"/><path d="M24 14v20" opacity=".45"/>',
+};
+
+const arteDaCategoria = (categoria) =>
+  `<div class="card-arte"><svg viewBox="0 0 48 48" fill="none" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${desenhos[categoria] ?? ""}</svg></div>`;
+
+/** A foto entra embutida; se o arquivo não existir, cai na arte da categoria. */
+function visualDoServico(servico) {
+  if (!servico.imagem) return arteDaCategoria(servico.categoria);
+  try {
+    return `<img class="card-foto" src="${foto(servico.imagem.replace(/^\//, ""))}" alt="${escapar(servico.nome)}" loading="lazy">`;
+  } catch {
+    console.warn(`aviso: ${servico.imagem} não encontrado — usando a arte da categoria`);
+    return arteDaCategoria(servico.categoria);
+  }
+}
+
 const cardsPorCategoria = categorias
   .map((categoria) => {
     const lista = dados.servicos.filter((s) => s.categoria === categoria.id);
@@ -40,6 +67,8 @@ const cardsPorCategoria = categorias
         const etiquetas = servico.inclui ?? servico.opcoes;
         return `
           <li class="card">
+            <div class="card-visual">${visualDoServico(servico)}</div>
+            <div class="card-conteudo">
             <div class="card-topo">
               <h4>${escapar(servico.nome)}</h4>
               <p class="preco">${escapar(servico.precoLabel)}</p>
@@ -57,6 +86,7 @@ const cardsPorCategoria = categorias
               <button type="button" class="link-agendar" data-servico="${servico.id}">
                 Agendar <span aria-hidden="true">&rarr;</span>
               </button>
+            </div>
             </div>
           </li>`;
       })
@@ -140,6 +170,7 @@ const regrasDeAgenda = String.raw`
 `;
 
 const html = `<title>Geovana Santos Espaço de Beleza</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap">
@@ -269,16 +300,24 @@ section { padding: 4.5rem 0; }
 .cards { display: grid; gap: 1rem; }
 @media (min-width: 640px) { .cards { grid-template-columns: 1fr 1fr; } }
 .card {
-  display: flex; flex-direction: column; padding: 1.5rem;
+  display: flex; flex-direction: column; overflow: hidden;
   border: 1px solid rgba(229,211,194,.7); border-radius: 1rem; background: rgba(255,255,255,.6);
   transition: border-color .2s, box-shadow .2s;
 }
+.card-visual { position: relative; aspect-ratio: 16/9; width: 100%; }
+.card-foto { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card-arte {
+  display: grid; place-items: center; width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--ink) 0%, #33221A 55%, var(--terracota-dark) 100%);
+}
+.card-arte svg { width: 4rem; height: 4rem; stroke: var(--dourado-claro); }
+.card-conteudo { display: flex; flex: 1; flex-direction: column; gap: .75rem; padding: 1.5rem; }
 .card:hover { border-color: rgba(200,90,46,.4); box-shadow: 0 12px 40px -24px rgba(23,16,13,.5); }
 .card-topo { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
 .card-topo h4 { font-family: var(--sans); font-size: 1rem; font-weight: 500; }
 .preco { font-family: var(--display); font-size: 1.3rem; color: var(--terracota); white-space: nowrap; }
-.card-desc { margin-top: .5rem; font-size: .9rem; color: rgba(23,16,13,.6); }
-.etiquetas { display: flex; flex-wrap: wrap; gap: .375rem; margin-top: 1rem; }
+.card-desc { font-size: .9rem; color: rgba(23,16,13,.6); }
+.etiquetas { display: flex; flex-wrap: wrap; gap: .375rem; }
 .etiquetas li { background: var(--creme-200); border-radius: 999px; padding: .25rem .625rem; font-size: .75rem; color: rgba(23,16,13,.6); }
 .card-rodape {
   display: flex; align-items: center; justify-content: space-between;
@@ -290,8 +329,6 @@ section { padding: 4.5rem 0; }
   font-size: .9rem; font-weight: 500; color: var(--terracota);
 }
 .link-agendar:hover { color: var(--terracota-dark); }
-.card-rodape .duracao, .link-agendar { margin-top: 1rem; }
-.card-rodape { align-items: flex-end; }
 
 /* Passos */
 .passos { display: grid; gap: 1.5rem; margin-top: 3rem; }

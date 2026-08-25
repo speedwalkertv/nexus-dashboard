@@ -33,6 +33,25 @@ Tudo vive em `lib/services.ts`. Cada serviço tem:
 Mexer nesse arquivo já atualiza a vitrine de preços, o passo 1 do agendamento e
 os dados estruturados que o Google lê.
 
+## Fotos dos serviços
+
+Cada card mostra uma imagem. Enquanto um serviço não tem foto, aparece a arte
+de marca da categoria (traço dourado sobre fundo quente) — decoração assumida,
+nunca uma promessa de resultado.
+
+Para colocar a foto real:
+
+1. Salve o arquivo em `public/servicos/` (ex.: `public/servicos/cilios.jpg`)
+2. Em `lib/services.ts`, adicione a linha no serviço:
+
+```ts
+imagem: "/servicos/cilios.jpg",
+```
+
+O card é cortado em 16:9, então a melhor foto é horizontal, com o trabalho no
+centro. Algo em torno de 1200x675 px já basta — arquivos muito grandes só
+deixam o site lento.
+
 ## Como o agendamento funciona
 
 1. **Serviço** — lista completa com preço e duração
