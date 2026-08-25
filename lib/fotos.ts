@@ -13,6 +13,4 @@ export type CreditoFoto = {
   fonte: string;
 };
 
-export const creditosFotos: CreditoFoto[] = [
-  { arquivo: "spa-pes.jpg", autor: "autor não informado", licenca: "CC0 / domínio público", licencaUrl: "https://creativecommons.org/publicdomain/zero/1.0/", fonte: "https://www.rawpixel.com/image/5960380/free-public-domain-cc0-photo" },
-];
+export const creditosFotos: CreditoFoto[] = [];
