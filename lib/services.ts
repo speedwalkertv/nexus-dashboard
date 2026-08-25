@@ -32,7 +32,7 @@ export type Servico = {
 
 export const categorias: { id: CategoriaId; nome: string; resumo: string }[] = [
   { id: "sobrancelhas", nome: "Sobrancelhas", resumo: "Design que respeita o seu traço natural" },
-  { id: "cilios", nome: "Cílios", resumo: "Extensão fio a fio, do discreto ao volumoso" },
+  { id: "cilios", nome: "Cílios", resumo: "Extensão em tufinho, do discreto ao volumoso" },
   { id: "maquiagem", nome: "Maquiagem", resumo: "Para festa, ensaio, formatura ou o dia a dia" },
   { id: "unhas", nome: "Unhas", resumo: "Alongamento com acabamento impecável" },
   { id: "pes", nome: "Pés", resumo: "Cuidado completo, do calo à esmaltação" },
