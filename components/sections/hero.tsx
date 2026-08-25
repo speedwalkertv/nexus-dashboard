@@ -36,14 +36,7 @@ export function Hero() {
             <a href="#agendar" className={classesBotao("primario", "lg")}>
               Agendar horário
             </a>
-            <a
-              href="#servicos"
-              className={classesBotao(
-                "secundario",
-                "lg",
-                "border-creme/25 text-creme hover:border-dourado hover:bg-creme/5",
-              )}
-            >
+            <a href="#servicos" className={classesBotao("secundario", "lg")}>
               Ver serviços e preços
             </a>
           </div>

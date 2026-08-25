@@ -1,9 +1,11 @@
 "use client";
 
+import { useRef } from "react";
 import { MessageCircle } from "lucide-react";
 import { classesBotao } from "@/components/ui/botao";
 import { linkWhatsApp, mensagemWhatsApp } from "@/lib/booking";
 import { cn } from "@/lib/cn";
+import { registrarPedido } from "@/lib/agendamentos-registrar";
 import type { Servico } from "@/lib/services";
 import { useBooking } from "./booking-context";
 
@@ -13,7 +15,8 @@ const campo =
   "w-full rounded-xl border border-creme/15 bg-white/[0.03] px-4 py-3 text-creme placeholder:text-creme/35 transition focus:border-dourado/60";
 
 export function StepDados({ servico, dia }: Props) {
-  const { nome, setNome, observacao, setObservacao, opcao, hora } = useBooking();
+  const { nome, setNome, observacao, setObservacao, opcao, hora, diaIso } = useBooking();
+  const jaRegistrado = useRef(false);
 
   const nomeValido = nome.trim().length >= 2;
   const pronto = nomeValido && Boolean(hora);
@@ -68,6 +71,11 @@ export function StepDados({ servico, dia }: Props) {
           href={link}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => {
+            if (jaRegistrado.current || !diaIso || !hora) return;
+            jaRegistrado.current = true;
+            registrarPedido({ servico, opcao: opcao ?? undefined, diaIso, hora, nome, observacao });
+          }}
           className={classesBotao("primario", "lg", "w-full")}
         >
           <MessageCircle className="h-5 w-5" aria-hidden />

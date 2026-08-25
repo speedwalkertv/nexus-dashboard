@@ -10,8 +10,8 @@ const variantes: Record<Variante, string> = {
   primario:
     "bg-terracota text-creme shadow-sm hover:bg-terracota-dark hover:shadow-md active:scale-[0.98]",
   secundario:
-    "border border-ink/20 bg-transparent text-ink hover:border-ink/40 hover:bg-ink/5 active:scale-[0.98]",
-  fantasma: "text-ink/70 hover:text-terracota",
+    "border border-creme/25 bg-transparent text-creme hover:border-dourado hover:bg-creme/5 active:scale-[0.98]",
+  fantasma: "text-creme/70 hover:text-dourado",
 };
 
 const tamanhos: Record<Tamanho, string> = {

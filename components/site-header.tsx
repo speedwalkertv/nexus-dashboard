@@ -28,10 +28,8 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition duration-300 ease-suave",
-        rolou || aberto
-          ? "border-b border-ink/10 bg-creme/95 text-ink backdrop-blur-md"
-          : "text-creme",
+        "fixed inset-x-0 top-0 z-50 text-creme transition duration-300 ease-suave",
+        rolou || aberto ? "border-b border-creme/10 bg-ink/95 backdrop-blur-md" : "",
       )}
     >
       <div className="container-x flex h-16 items-center justify-between gap-4 sm:h-20">
@@ -48,12 +46,7 @@ export function SiteHeader() {
             <span className="block font-display text-lg tracking-wide sm:text-xl">
               {business.nome}
             </span>
-            <span
-              className={cn(
-                "block text-[0.6rem] uppercase tracking-[0.25em]",
-                rolou || aberto ? "text-ink/50" : "text-creme/60",
-              )}
-            >
+            <span className="block text-[0.6rem] uppercase tracking-[0.25em] text-creme/60">
               {business.assinatura}
             </span>
           </span>
@@ -64,10 +57,7 @@ export function SiteHeader() {
             <a
               key={link.href}
               href={link.href}
-              className={cn(
-                "text-sm transition",
-                rolou ? "text-ink/70 hover:text-terracota" : "text-creme/80 hover:text-dourado",
-              )}
+              className="text-sm text-creme/80 transition hover:text-dourado"
             >
               {link.rotulo}
             </a>
@@ -92,7 +82,7 @@ export function SiteHeader() {
       {aberto && (
         <nav
           id="menu-mobile"
-          className="container-x border-t border-ink/10 bg-creme/95 pb-6 pt-4 md:hidden"
+          className="container-x border-t border-creme/10 bg-ink/95 pb-6 pt-4 md:hidden"
         >
           <ul className="space-y-1">
             {links.map((link) => (
@@ -100,7 +90,7 @@ export function SiteHeader() {
                 <a
                   href={link.href}
                   onClick={() => setAberto(false)}
-                  className="block py-2.5 text-ink/80"
+                  className="block py-2.5 text-creme/80"
                 >
                   {link.rotulo}
                 </a>

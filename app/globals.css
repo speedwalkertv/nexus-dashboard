@@ -13,7 +13,7 @@
   }
 
   body {
-    @apply bg-creme font-sans text-ink antialiased;
+    @apply bg-ink font-sans text-creme antialiased;
   }
 
   ::selection {
@@ -21,11 +21,7 @@
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-terracota ring-offset-2 ring-offset-creme;
-  }
-
-  .dark-section :focus-visible {
-    @apply ring-dourado ring-offset-ink;
+    @apply outline-none ring-2 ring-dourado ring-offset-2 ring-offset-ink;
   }
 }
 
@@ -40,11 +36,7 @@
   }
 
   .rotulo {
-    @apply text-xs font-medium uppercase tracking-[0.2em] text-terracota;
-  }
-
-  .dark-section .rotulo {
-    @apply text-dourado;
+    @apply text-xs font-medium uppercase tracking-[0.2em] text-dourado;
   }
 }
 
