@@ -7,8 +7,8 @@ export default {
       colors: {
         ink: { DEFAULT: "#17100D", 800: "#241812", 700: "#33221A", 600: "#4A342A" },
         creme: { DEFAULT: "#FBF5EF", 200: "#F4EAE0", 300: "#E5D3C2" },
-        terracota: { DEFAULT: "#C85A2E", dark: "#A44420", soft: "#E9BCA6" },
-        dourado: { DEFAULT: "#C79445", claro: "#E8C889" },
+        terracota: { DEFAULT: "#E8590C", dark: "#C2450A", soft: "#F5A667" },
+        dourado: { DEFAULT: "#FF8C1A", claro: "#FFC670" },
         rose: { DEFAULT: "#C98A92", soft: "#EBD2D5" },
       },
       fontFamily: {
