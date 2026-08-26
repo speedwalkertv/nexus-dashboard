@@ -6,30 +6,33 @@ import { servicoPorId } from "@/lib/services";
 export type Etapa = "servico" | "dados";
 
 export const etapas: { id: Etapa; titulo: string }[] = [
-  { id: "servico", titulo: "Serviço" },
+  { id: "servico", titulo: "Serviços" },
   { id: "dados", titulo: "Seus dados" },
 ];
 
+export type ItemSelecionado = { id: string; opcao?: string };
+
 type BookingState = {
   etapa: Etapa;
-  servicoId: string | null;
-  opcao: string | null;
+  selecionados: ItemSelecionado[];
   nome: string;
   observacao: string;
 };
 
 const inicial: BookingState = {
   etapa: "servico",
-  servicoId: null,
-  opcao: null,
+  selecionados: [],
   nome: "",
   observacao: "",
 };
 
 type BookingContextValue = BookingState & {
   irPara: (etapa: Etapa) => void;
-  escolherServico: (id: string, opcao?: string) => void;
-  escolherOpcao: (opcao: string) => void;
+  toggleServico: (id: string) => void;
+  adicionarServico: (id: string) => void;
+  removerServico: (id: string) => void;
+  escolherOpcao: (id: string, opcao: string) => void;
+  continuar: () => void;
   setNome: (nome: string) => void;
   setObservacao: (texto: string) => void;
   recomecar: () => void;
@@ -44,18 +47,42 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
     setState((s) => ({ ...s, etapa }));
   }, []);
 
-  const escolherServico = useCallback((id: string, opcao?: string) => {
-    const servico = servicoPorId(id);
+  const adicionarServico = useCallback((id: string) => {
+    setState((s) => {
+      if (s.selecionados.some((item) => item.id === id)) return s;
+      const servico = servicoPorId(id);
+      return {
+        ...s,
+        selecionados: [...s.selecionados, { id, opcao: servico?.opcoes?.[0] }],
+      };
+    });
+  }, []);
+
+  const removerServico = useCallback((id: string) => {
+    setState((s) => ({ ...s, selecionados: s.selecionados.filter((item) => item.id !== id) }));
+  }, []);
+
+  const toggleServico = useCallback(
+    (id: string) => {
+      setState((s) =>
+        s.selecionados.some((item) => item.id === id)
+          ? { ...s, selecionados: s.selecionados.filter((item) => item.id !== id) }
+          : s,
+      );
+      adicionarServico(id);
+    },
+    [adicionarServico],
+  );
+
+  const escolherOpcao = useCallback((id: string, opcao: string) => {
     setState((s) => ({
       ...s,
-      servicoId: id,
-      opcao: opcao ?? servico?.opcoes?.[0] ?? null,
-      etapa: "dados",
+      selecionados: s.selecionados.map((item) => (item.id === id ? { ...item, opcao } : item)),
     }));
   }, []);
 
-  const escolherOpcao = useCallback((opcao: string) => {
-    setState((s) => ({ ...s, opcao }));
+  const continuar = useCallback(() => {
+    setState((s) => (s.selecionados.length > 0 ? { ...s, etapa: "dados" } : s));
   }, []);
 
   const setNome = useCallback((nome: string) => setState((s) => ({ ...s, nome })), []);
@@ -69,13 +96,27 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
     () => ({
       ...state,
       irPara,
-      escolherServico,
+      toggleServico,
+      adicionarServico,
+      removerServico,
       escolherOpcao,
+      continuar,
       setNome,
       setObservacao,
       recomecar,
     }),
-    [state, irPara, escolherServico, escolherOpcao, setNome, setObservacao, recomecar],
+    [
+      state,
+      irPara,
+      toggleServico,
+      adicionarServico,
+      removerServico,
+      escolherOpcao,
+      continuar,
+      setNome,
+      setObservacao,
+      recomecar,
+    ],
   );
 
   return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>;
@@ -87,17 +128,17 @@ export function useBooking() {
   return ctx;
 }
 
-/** Seleciona o serviço e leva a pessoa até o bloco de agendamento. */
+/** Adiciona o serviço à seleção e leva a pessoa até o bloco de agendamento. */
 export function useAgendarServico() {
-  const { escolherServico } = useBooking();
+  const { adicionarServico } = useBooking();
   return useCallback(
-    (id: string, opcao?: string) => {
-      escolherServico(id, opcao);
+    (id: string) => {
+      adicionarServico(id);
       const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       document
         .getElementById("agendar")
         ?.scrollIntoView({ behavior: reduzido ? "auto" : "smooth", block: "start" });
     },
-    [escolherServico],
+    [adicionarServico],
   );
 }

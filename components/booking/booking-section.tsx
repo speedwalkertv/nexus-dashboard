@@ -3,19 +3,16 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { servicoPorId } from "@/lib/services";
 import { etapas, useBooking, type Etapa } from "./booking-context";
 import { Resumo } from "./resumo";
 import { StepDados } from "./step-dados";
 import { StepServico } from "./step-servico";
 
 export function BookingSection() {
-  const { etapa, servicoId, irPara } = useBooking();
+  const { etapa, selecionados, irPara } = useBooking();
 
-  const servico = servicoId ? (servicoPorId(servicoId) ?? null) : null;
-
-  // Nunca deixa a pessoa cair na etapa de dados sem ter escolhido o serviço.
-  const atual: Etapa = servico ? etapa : "servico";
+  // Nunca deixa a pessoa cair na etapa de dados sem ter escolhido serviço.
+  const atual: Etapa = selecionados.length > 0 ? etapa : "servico";
 
   const indiceAtual = etapas.findIndex((e) => e.id === atual);
   const anterior = indiceAtual > 0 ? etapas[indiceAtual - 1].id : null;
@@ -26,11 +23,11 @@ export function BookingSection() {
         <header className="max-w-2xl">
           <p className="rotulo">Agende online</p>
           <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-            Escolha o serviço e mande seu pedido
+            Escolha os serviços e mande seu pedido
           </h2>
           <p className="mt-4 text-creme/60">
-            São dois passos. O pedido sai pronto no WhatsApp — o dia e o horário são combinados
-            direto na conversa.
+            São dois passos. Dá pra marcar mais de um serviço no mesmo pedido — o dia e o horário
+            são combinados direto no WhatsApp.
           </p>
         </header>
 
@@ -84,11 +81,11 @@ export function BookingSection() {
 
             <ConteudoEtapa etapa={atual}>
               {atual === "servico" && <StepServico />}
-              {atual === "dados" && servico && <StepDados servico={servico} />}
+              {atual === "dados" && <StepDados />}
             </ConteudoEtapa>
           </div>
 
-          <Resumo servico={servico} />
+          <Resumo />
         </div>
       </div>
     </section>

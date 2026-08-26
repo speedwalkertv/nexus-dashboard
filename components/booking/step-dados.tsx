@@ -2,30 +2,28 @@
 
 import { MessageCircle } from "lucide-react";
 import { classesBotao } from "@/components/ui/botao";
-import { linkWhatsApp, mensagemWhatsApp } from "@/lib/booking";
+import { linkWhatsApp, mensagemWhatsApp, type ItemAgendamento } from "@/lib/booking";
 import { cn } from "@/lib/cn";
-import type { Servico } from "@/lib/services";
+import { servicoPorId } from "@/lib/services";
 import { useBooking } from "./booking-context";
-
-type Props = { servico: Servico };
 
 const campo =
   "w-full rounded-xl border border-creme/15 bg-white/[0.03] px-4 py-3 text-creme placeholder:text-creme/35 transition focus:border-dourado/60";
 
-export function StepDados({ servico }: Props) {
-  const { nome, setNome, observacao, setObservacao, opcao } = useBooking();
+export function StepDados() {
+  const { selecionados, nome, setNome, observacao, setObservacao } = useBooking();
+
+  const itens: ItemAgendamento[] = [];
+  for (const item of selecionados) {
+    const servico = servicoPorId(item.id);
+    if (servico) itens.push({ servico, opcao: item.opcao });
+  }
 
   const nomeValido = nome.trim().length >= 2;
+  const pronto = nomeValido && itens.length > 0;
 
-  const link = nomeValido
-    ? linkWhatsApp(
-        mensagemWhatsApp({
-          servico,
-          opcao: opcao ?? undefined,
-          nome: nome.trim(),
-          observacao,
-        }),
-      )
+  const link = pronto
+    ? linkWhatsApp(mensagemWhatsApp({ itens, nome: nome.trim(), observacao }))
     : "";
 
   return (
@@ -60,7 +58,7 @@ export function StepDados({ servico }: Props) {
         />
       </div>
 
-      {nomeValido ? (
+      {pronto ? (
         <a
           href={link}
           target="_blank"
