@@ -1,33 +1,21 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
-import { dataDeChave } from "@/lib/booking";
 import { cn } from "@/lib/cn";
 import { servicoPorId } from "@/lib/services";
 import { etapas, useBooking, type Etapa } from "./booking-context";
 import { Resumo } from "./resumo";
 import { StepDados } from "./step-dados";
-import { StepData } from "./step-data";
-import { StepHorario } from "./step-horario";
 import { StepServico } from "./step-servico";
 
 export function BookingSection() {
-  const { etapa, servicoId, diaIso, hora, irPara } = useBooking();
-
-  // A agenda depende do relógio do visitante, então só é montada no cliente.
-  const [hoje, setHoje] = useState<Date | null>(null);
-  useEffect(() => setHoje(new Date()), []);
+  const { etapa, servicoId, irPara } = useBooking();
 
   const servico = servicoId ? (servicoPorId(servicoId) ?? null) : null;
-  const dia = useMemo(() => (diaIso ? dataDeChave(diaIso) : null), [diaIso]);
 
-  // Nunca deixa a pessoa cair numa etapa sem o que a anterior precisava responder.
-  let atual: Etapa = etapa;
-  if (!servico) atual = "servico";
-  else if (!dia && (etapa === "horario" || etapa === "dados")) atual = "data";
-  else if (!hora && etapa === "dados") atual = "horario";
+  // Nunca deixa a pessoa cair na etapa de dados sem ter escolhido o serviço.
+  const atual: Etapa = servico ? etapa : "servico";
 
   const indiceAtual = etapas.findIndex((e) => e.id === atual);
   const anterior = indiceAtual > 0 ? etapas[indiceAtual - 1].id : null;
@@ -38,11 +26,11 @@ export function BookingSection() {
         <header className="max-w-2xl">
           <p className="rotulo">Agende online</p>
           <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-            Escolha o serviço, o dia e o horário
+            Escolha o serviço e mande seu pedido
           </h2>
           <p className="mt-4 text-creme/60">
-            São quatro passos. No final, o pedido sai pronto no WhatsApp e a confirmação vem na
-            conversa.
+            São dois passos. O pedido sai pronto no WhatsApp — o dia e o horário são combinados
+            direto na conversa.
           </p>
         </header>
 
@@ -96,23 +84,11 @@ export function BookingSection() {
 
             <ConteudoEtapa etapa={atual}>
               {atual === "servico" && <StepServico />}
-              {atual === "data" &&
-                (hoje ? (
-                  <StepData hoje={hoje} duracaoMin={servico?.duracaoMin ?? 60} />
-                ) : (
-                  <Esqueleto />
-                ))}
-              {atual === "horario" &&
-                (hoje && dia ? (
-                  <StepHorario hoje={hoje} dia={dia} duracaoMin={servico?.duracaoMin ?? 60} />
-                ) : (
-                  <Esqueleto />
-                ))}
-              {atual === "dados" && servico && dia && <StepDados servico={servico} dia={dia} />}
+              {atual === "dados" && servico && <StepDados servico={servico} />}
             </ConteudoEtapa>
           </div>
 
-          <Resumo servico={servico} dia={dia} />
+          <Resumo servico={servico} />
         </div>
       </div>
     </section>
@@ -135,15 +111,5 @@ function ConteudoEtapa({ etapa, children }: { etapa: Etapa; children: React.Reac
         {children}
       </motion.div>
     </AnimatePresence>
-  );
-}
-
-function Esqueleto() {
-  return (
-    <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-5" aria-hidden>
-      {Array.from({ length: 10 }).map((_, i) => (
-        <div key={i} className="h-16 animate-pulse rounded-xl bg-white/[0.04]" />
-      ))}
-    </div>
   );
 }

@@ -23,9 +23,8 @@ export const business = {
   },
 
   /**
-   * Horário de funcionamento por dia da semana (0 = domingo).
-   * `null` = fechado. Os horários disponíveis no agendamento são gerados a
-   * partir daqui, em intervalos de `intervaloMinutos`.
+   * Horário de funcionamento por dia da semana (0 = domingo), usado nos
+   * dados estruturados de SEO. `null` = fechado.
    */
   expediente: {
     0: null,
@@ -36,11 +35,6 @@ export const business = {
     5: { abre: "09:00", fecha: "21:00" },
     6: { abre: "09:00", fecha: "21:00" },
   } as Record<number, { abre: string; fecha: string } | null>,
-
-  intervaloMinutos: 30,
-
-  /** Quantos dias para frente a agenda fica aberta. */
-  janelaDias: 30,
 } as const;
 
 export const horarioResumo = [
