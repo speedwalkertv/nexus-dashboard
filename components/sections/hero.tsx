@@ -18,14 +18,14 @@ export function Hero() {
         className="pointer-events-none absolute -left-40 top-0 h-[36rem] w-[36rem] rounded-full bg-terracota/20 blur-[120px]"
       />
 
-      <div className="container-x relative grid gap-12 pb-20 pt-28 sm:pb-28 sm:pt-36 lg:grid-cols-2 lg:items-center lg:gap-16">
-        <div className="max-w-xl">
-          <h1 className="font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
+      <div className="container-x relative grid gap-12 pb-20 pt-28 sm:pb-28 sm:pt-36 md:grid-cols-[1.05fr_0.95fr] md:items-center md:gap-12 lg:gap-16">
+        <div className="max-w-xl md:max-w-none">
+          <h1 className="font-display text-5xl leading-[1.02] sm:text-6xl lg:text-[5.5rem]">
             Sua beleza
             <span className="block text-dourado-claro">com hora marcada.</span>
           </h1>
 
-          <p className="mt-6 text-lg leading-relaxed text-creme/80">
+          <p className="mt-6 max-w-lg text-lg leading-relaxed text-creme/80">
             Sobrancelhas, cílios, unhas, maquiagem, cabelo e tranças no mesmo lugar. Escolha o
             serviço e o horário aqui — leva menos de um minuto.
           </p>
@@ -50,7 +50,7 @@ export function Hero() {
         </div>
 
         <div className="relative">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-black ring-1 ring-dourado/25 sm:aspect-[3/4] lg:aspect-[4/5]">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-b-[2rem] rounded-t-[999px] bg-black ring-1 ring-dourado/40 sm:aspect-[3/4] md:aspect-[4/5]">
             <Image
               src="/geovana-hero.jpg"
               alt={`${business.profissional}, profissional responsável pelo espaço`}
@@ -63,7 +63,7 @@ export function Hero() {
               aria-hidden
               className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent"
             />
-            <p className="absolute bottom-6 left-6 font-display text-2xl text-creme">
+            <p className="absolute inset-x-0 bottom-6 text-center font-display text-3xl text-creme">
               {business.profissional}
             </p>
           </div>

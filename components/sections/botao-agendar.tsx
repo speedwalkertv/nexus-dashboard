@@ -20,8 +20,8 @@ export function BotaoAgendar({ servicoId, nomeServico, className }: Props) {
       className={cn(
         "inline-flex min-h-11 items-center gap-1.5 rounded-full border px-4 text-sm font-medium transition duration-200 ease-suave active:scale-[0.97]",
         ativo
-          ? "border-dourado bg-dourado/15 text-dourado-claro"
-          : "border-terracota text-terracota-soft hover:bg-terracota hover:text-ink",
+          ? "border-terracota-dark bg-terracota-dark text-creme"
+          : "border-terracota-dark text-terracota-dark hover:bg-terracota-dark hover:text-creme",
         className,
       )}
     >

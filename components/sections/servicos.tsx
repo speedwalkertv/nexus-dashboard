@@ -11,13 +11,13 @@ import { BotaoAgendar } from "./botao-agendar";
 
 export function Servicos() {
   return (
-    <section id="servicos" className="scroll-mt-20 bg-ink py-20 sm:py-28">
+    <section id="servicos" className="scroll-mt-20 bg-creme py-20 text-ink sm:py-28">
       <div className="container-x">
         <header className="max-w-2xl">
-          <h2 className="font-display text-4xl leading-tight text-creme sm:text-5xl">
+          <h2 className="font-display text-5xl leading-[1.05] text-ink sm:text-6xl">
             Tudo o que você pode agendar
           </h2>
-          <p className="mt-4 text-creme/70">
+          <p className="mt-4 text-ink/70">
             Os valores abaixo são os praticados no espaço. O tempo é uma
             estimativa de reserva na agenda — pode variar conforme o seu cabelo,
             unha ou pele.
@@ -34,10 +34,10 @@ export function Servicos() {
                 <div className="grid gap-6 lg:grid-cols-[16rem_1fr] lg:gap-10">
                   <div>
                     <div className="filete" />
-                    <h3 className="mt-4 font-display text-3xl text-creme">
+                    <h3 className="mt-4 font-display text-4xl text-ink">
                       {categoria.nome}
                     </h3>
-                    <p className="mt-2 text-sm text-creme/70">
+                    <p className="mt-2 text-sm text-ink/70">
                       {categoria.resumo}
                     </p>
                   </div>
@@ -46,7 +46,7 @@ export function Servicos() {
                     {lista.map((servico) => (
                       <li
                         key={servico.id}
-                        className="flex overflow-hidden rounded-2xl border border-creme/10 bg-white/[0.03] transition duration-200 ease-suave hover:border-terracota/50 sm:flex-col"
+                        className="flex overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_1px_2px_rgba(23,16,13,0.06),0_14px_32px_-20px_rgba(23,16,13,0.35)] transition duration-200 ease-suave hover:border-terracota/60 sm:flex-col"
                       >
                         <div className="relative w-24 shrink-0 self-stretch sm:aspect-square sm:w-full sm:self-auto">
                           {servico.imagem ? (
@@ -64,16 +64,16 @@ export function Servicos() {
 
                         <div className="flex min-w-0 flex-1 flex-col gap-2.5 p-4 sm:gap-3 sm:p-6">
                           <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-                            <h4 className="font-medium leading-snug text-creme">
+                            <h4 className="font-medium leading-snug text-ink">
                               {servico.nome}
                             </h4>
-                            <p className="whitespace-nowrap font-display text-xl text-dourado-claro">
+                            <p className="whitespace-nowrap font-display text-xl text-terracota-dark">
                               {precoLabel(servico)}
                             </p>
                           </div>
 
                           {servico.descricao && (
-                            <p className="text-sm leading-relaxed text-creme/70">
+                            <p className="text-sm leading-relaxed text-ink/70">
                               {servico.descricao}
                             </p>
                           )}
@@ -84,7 +84,7 @@ export function Servicos() {
                                 (item) => (
                                   <li
                                     key={item}
-                                    className="rounded-full bg-creme/10 px-2.5 py-1 text-xs text-creme/75"
+                                    className="rounded-full bg-creme-200 px-2.5 py-1 text-xs text-ink/75"
                                   >
                                     {item}
                                   </li>
@@ -93,8 +93,8 @@ export function Servicos() {
                             </ul>
                           )}
 
-                          <div className="mt-auto flex items-center justify-between border-t border-creme/10 pt-4">
-                            <span className="text-sm text-creme/70">
+                          <div className="mt-auto flex items-center justify-between border-t border-ink/10 pt-4">
+                            <span className="text-sm text-ink/70">
                               ≈ {duracaoLabel(servico.duracaoMin)}
                             </span>
                             <BotaoAgendar

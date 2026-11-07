@@ -5,10 +5,10 @@ import { business } from "@/lib/business";
 
 export function Sobre() {
   return (
-    <section id="sobre" className="scroll-mt-20 bg-ink py-20 sm:py-28">
+    <section id="sobre" className="scroll-mt-20 bg-creme-200 py-20 text-ink sm:py-28">
       <div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
         <Reveal>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-black ring-1 ring-creme/10">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-black ring-1 ring-ink/10">
             <Image
               src="/geovana-sobre.jpg"
               alt={`${business.profissional} no espaço de beleza`}
@@ -21,12 +21,12 @@ export function Sobre() {
 
         <Reveal delay={0.1}>
           <div className="max-w-xl">
-            <h2 className="font-display text-4xl leading-tight text-creme sm:text-5xl">
+            <h2 className="font-display text-5xl leading-[1.05] text-ink sm:text-6xl">
               Prazer, sou a {business.profissional.split(" ")[0]}
             </h2>
 
             {/* Texto base — troque pela sua história quando quiser. */}
-            <div className="mt-6 space-y-4 text-creme/80">
+            <div className="mt-6 space-y-4 text-ink/80">
               <p>
                 Montei este espaço para atender do jeito que eu gosto de ser atendida: com hora
                 marcada, tempo suficiente e sem correria.
