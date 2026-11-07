@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useMemo, useState } from "react";
+import type { PeriodoId } from "@/lib/booking";
 import { servicoPorId } from "@/lib/services";
 
 export type Etapa = "servico" | "dados";
@@ -17,6 +18,8 @@ type BookingState = {
   selecionados: ItemSelecionado[];
   nome: string;
   observacao: string;
+  dia: string;
+  periodo: PeriodoId | "";
 };
 
 const inicial: BookingState = {
@@ -24,6 +27,8 @@ const inicial: BookingState = {
   selecionados: [],
   nome: "",
   observacao: "",
+  dia: "",
+  periodo: "",
 };
 
 type BookingContextValue = BookingState & {
@@ -35,6 +40,8 @@ type BookingContextValue = BookingState & {
   continuar: () => void;
   setNome: (nome: string) => void;
   setObservacao: (texto: string) => void;
+  setDia: (dia: string) => void;
+  setPeriodo: (periodo: PeriodoId | "") => void;
   recomecar: () => void;
 };
 
@@ -90,6 +97,11 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
     (observacao: string) => setState((s) => ({ ...s, observacao })),
     [],
   );
+  const setDia = useCallback((dia: string) => setState((s) => ({ ...s, dia })), []);
+  const setPeriodo = useCallback(
+    (periodo: PeriodoId | "") => setState((s) => ({ ...s, periodo })),
+    [],
+  );
   const recomecar = useCallback(() => setState(inicial), []);
 
   const value = useMemo(
@@ -103,6 +115,8 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
       continuar,
       setNome,
       setObservacao,
+      setDia,
+      setPeriodo,
       recomecar,
     }),
     [
@@ -115,6 +129,8 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
       continuar,
       setNome,
       setObservacao,
+      setDia,
+      setPeriodo,
       recomecar,
     ],
   );
@@ -126,19 +142,4 @@ export function useBooking() {
   const ctx = useContext(BookingContext);
   if (!ctx) throw new Error("useBooking precisa estar dentro de <BookingProvider>");
   return ctx;
-}
-
-/** Adiciona o serviço à seleção e leva a pessoa até o bloco de agendamento. */
-export function useAgendarServico() {
-  const { adicionarServico } = useBooking();
-  return useCallback(
-    (id: string) => {
-      adicionarServico(id);
-      const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      document
-        .getElementById("agendar")
-        ?.scrollIntoView({ behavior: reduzido ? "auto" : "smooth", block: "start" });
-    },
-    [adicionarServico],
-  );
 }

@@ -8,7 +8,7 @@ import { Servicos } from "@/components/sections/servicos";
 import { Sobre } from "@/components/sections/sobre";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { WhatsAppFlutuante } from "@/components/whatsapp-flutuante";
+import { BarraPedido } from "@/components/booking/barra-pedido";
 import { business } from "@/lib/business";
 import { servicos } from "@/lib/services";
 
@@ -30,7 +30,7 @@ export default function Home() {
         <Contato />
       </main>
       <SiteFooter />
-      <WhatsAppFlutuante />
+      <BarraPedido />
     </BookingProvider>
   );
 }

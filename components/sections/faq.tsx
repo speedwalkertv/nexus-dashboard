@@ -5,17 +5,17 @@ const perguntas = [
   {
     pergunta: "O horário que eu escolho já fica garantido?",
     resposta:
-      "O site envia o seu pedido com dia, horário e serviço prontos. A reserva é confirmada na resposta do WhatsApp — normalmente em poucos minutos, dentro do horário de funcionamento.",
+      "Ainda não. O site envia o seu pedido com serviços e preferência de dia e período. A reserva só vale quando a Geovana confirma o horário exato no WhatsApp, normalmente em poucos minutos dentro do horário de funcionamento.",
   },
   {
     pergunta: "Posso remarcar ou cancelar?",
     resposta:
-      "Pode. Avise pelo WhatsApp com a maior antecedência possível: assim o horário fica livre para outra pessoa e eu consigo encaixar você em outro dia.",
+      "Pode. Avise na própria conversa de confirmação com a maior antecedência possível: assim o horário fica livre para outra pessoa e dá para encaixar você em outro dia.",
   },
   {
-    pergunta: "Por que alguns horários não aparecem?",
+    pergunta: "Quanto tempo leva cada serviço?",
     resposta:
-      "A agenda só mostra horários em que o serviço cabe inteiro antes do fechamento. Serviços mais longos, como tranças, aparecem em menos horários por causa disso.",
+      "O tempo aparece em cada serviço e no resumo do pedido. É a reserva que fica na agenda e pode variar um pouco conforme o seu cabelo, unha ou pele. Serviços longos, como tranças, pedem horários com mais folga antes do fechamento.",
   },
   {
     pergunta: "O preço pode mudar?",
@@ -35,8 +35,7 @@ export function Faq() {
       <div className="container-x grid gap-10 lg:grid-cols-[20rem_1fr] lg:gap-16">
         <Reveal>
           <div>
-            <p className="rotulo">Dúvidas</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-creme sm:text-5xl">
+            <h2 className="font-display text-4xl leading-tight text-creme sm:text-5xl">
               Antes de agendar
             </h2>
           </div>
@@ -53,7 +52,7 @@ export function Faq() {
                     aria-hidden
                   />
                 </summary>
-                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-creme/60">
+                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-creme/75">
                   {item.resposta}
                 </p>
               </details>

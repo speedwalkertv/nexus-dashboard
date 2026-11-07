@@ -1,19 +1,15 @@
-import { Instagram, MapPin, MessageCircle } from "lucide-react";
+import { Instagram, MapPin } from "lucide-react";
 import { classesBotao } from "@/components/ui/botao";
 import { Reveal } from "@/components/ui/reveal";
-import { linkWhatsApp } from "@/lib/booking";
 import { business, horarioResumo } from "@/lib/business";
 
 export function Contato() {
-  const conversa = linkWhatsApp(`Olá, ${business.nome}! Vim pelo site e queria tirar uma dúvida.`);
-
   return (
     <section id="contato" className="scroll-mt-20 bg-ink py-20 sm:py-28">
       <div className="container-x grid gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <div>
-            <p className="rotulo">Onde e quando</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-creme sm:text-5xl">
+            <h2 className="font-display text-4xl leading-tight text-creme sm:text-5xl">
               Venha tomar um café
             </h2>
 
@@ -36,14 +32,8 @@ export function Contato() {
             </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={conversa}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={classesBotao("primario", "lg")}
-              >
-                <MessageCircle className="h-5 w-5" aria-hidden />
-                Falar no WhatsApp
+              <a href="#agendar" className={classesBotao("primario", "lg")}>
+                Agendar horário
               </a>
               <a
                 href={business.instagramUrl}
@@ -71,7 +61,7 @@ export function Contato() {
                 </div>
               ))}
             </dl>
-            <p className="mt-6 text-sm text-creme/50">
+            <p className="mt-6 text-sm text-creme/60">
               Atendimento só com hora marcada, para ninguém esperar.
             </p>
           </div>

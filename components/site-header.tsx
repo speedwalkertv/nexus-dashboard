@@ -46,7 +46,7 @@ export function SiteHeader() {
             <span className="block font-display text-lg tracking-wide sm:text-xl">
               {business.nome}
             </span>
-            <span className="block text-[0.6rem] uppercase tracking-[0.25em] text-creme/60">
+            <span className="block text-[0.7rem] uppercase tracking-[0.2em] text-creme/70">
               {business.assinatura}
             </span>
           </span>

@@ -12,7 +12,7 @@ export function StepServico() {
 
   return (
     <div className="space-y-8">
-      <p className="text-sm text-creme/50">
+      <p className="text-sm text-creme/70">
         Pode marcar mais de um serviço para o mesmo horário — o pedido sai com todos juntos.
       </p>
 
@@ -22,7 +22,7 @@ export function StepServico() {
 
         return (
           <fieldset key={categoria.id}>
-            <legend className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-dourado">
+            <legend className="mb-3 font-display text-2xl text-dourado-claro">
               {categoria.nome}
             </legend>
             <div className="grid gap-2 sm:grid-cols-2">
@@ -46,14 +46,14 @@ export function StepServico() {
                     />
                     <span className="min-w-0">
                       <span className="block font-medium text-creme">{servico.nome}</span>
-                      <span className="mt-1 block text-sm text-creme/50">
+                      <span className="mt-1 block text-sm text-creme/70">
                         {duracaoLabel(servico.duracaoMin)} · {precoLabel(servico)}
                       </span>
                     </span>
                     <span
                       className={cn(
                         "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition",
-                        ativo ? "border-dourado bg-dourado text-ink" : "border-creme/30",
+                        ativo ? "border-dourado bg-dourado text-ink" : "border-creme/50",
                       )}
                       aria-hidden
                     >

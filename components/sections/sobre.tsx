@@ -21,13 +21,12 @@ export function Sobre() {
 
         <Reveal delay={0.1}>
           <div className="max-w-xl">
-            <p className="rotulo">Quem atende você</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-creme sm:text-5xl">
+            <h2 className="font-display text-4xl leading-tight text-creme sm:text-5xl">
               Prazer, sou a {business.profissional.split(" ")[0]}
             </h2>
 
             {/* Texto base — troque pela sua história quando quiser. */}
-            <div className="mt-6 space-y-4 text-creme/70">
+            <div className="mt-6 space-y-4 text-creme/80">
               <p>
                 Montei este espaço para atender do jeito que eu gosto de ser atendida: com hora
                 marcada, tempo suficiente e sem correria.

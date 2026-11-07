@@ -16,8 +16,22 @@
     @apply bg-ink font-sans text-creme antialiased;
   }
 
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  select option {
+    @apply bg-ink text-creme;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
   ::selection {
-    @apply bg-terracota text-creme;
+    @apply bg-terracota text-ink;
   }
 
   :focus-visible {
@@ -35,9 +49,6 @@
     @apply h-px w-12 bg-gradient-to-r from-dourado to-transparent;
   }
 
-  .rotulo {
-    @apply text-xs font-medium uppercase tracking-[0.2em] text-dourado;
-  }
 }
 
 /* Nada de seção em branco no papel. */

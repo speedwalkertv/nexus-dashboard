@@ -18,10 +18,15 @@ const sans = Jost({
 
 const titulo = `${business.nome} — ${business.assinatura}`;
 const descricao =
-  "Agende online sobrancelhas, cílios, unhas, maquiagem, spa dos pés, cabelo e tranças. Escolha o serviço, o dia e o horário — a confirmação chega no WhatsApp.";
+  "Agende online sobrancelhas, cílios, unhas, maquiagem, spa dos pés, cabelo e tranças. Veja preço e duração de cada serviço, monte o pedido e envie para a Geovana confirmar o horário no WhatsApp.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : "http://localhost:3000"),
+  ),
   title: { default: titulo, template: `%s — ${business.nome}` },
   description: descricao,
   keywords: [

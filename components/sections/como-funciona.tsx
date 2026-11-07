@@ -2,16 +2,16 @@ import { Reveal } from "@/components/ui/reveal";
 
 const passos = [
   {
-    titulo: "Escolha o serviço",
-    texto: "Com o valor e a duração na tela, sem precisar perguntar antes.",
+    titulo: "Escolha os serviços",
+    texto: "Com valor e duração na tela, sem precisar perguntar antes. Pode marcar mais de um.",
   },
   {
-    titulo: "Escolha dia e horário",
-    texto: "A agenda mostra só os horários em que o serviço cabe inteiro.",
+    titulo: "Diga o melhor dia",
+    texto: "Informe o dia e o período que prefere. É opcional.",
   },
   {
-    titulo: "Confirme no WhatsApp",
-    texto: "O pedido sai pronto na conversa. A confirmação vem por lá.",
+    titulo: "Envie o pedido",
+    texto: "O WhatsApp abre com tudo escrito e a Geovana confirma o horário exato.",
   },
 ];
 
@@ -20,8 +20,7 @@ export function ComoFunciona() {
     <section id="como-funciona" className="scroll-mt-20 bg-ink-800 py-20 sm:py-24">
       <div className="container-x">
         <Reveal>
-          <p className="rotulo">Como funciona</p>
-          <h2 className="mt-4 max-w-xl font-display text-4xl leading-tight text-creme sm:text-5xl">
+          <h2 className="max-w-xl font-display text-4xl leading-tight text-creme sm:text-5xl">
             Três passos até o seu horário
           </h2>
         </Reveal>
@@ -30,9 +29,9 @@ export function ComoFunciona() {
           {passos.map((passo, i) => (
             <Reveal key={passo.titulo} delay={i * 0.08}>
               <li className="h-full rounded-2xl border border-creme/10 bg-white/[0.03] p-7">
-                <span className="font-display text-5xl text-terracota/40">0{i + 1}</span>
+                <span className="font-display text-5xl text-terracota">0{i + 1}</span>
                 <h3 className="mt-4 font-medium text-creme">{passo.titulo}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-creme/60">{passo.texto}</p>
+                <p className="mt-2 text-sm leading-relaxed text-creme/75">{passo.texto}</p>
               </li>
             </Reveal>
           ))}

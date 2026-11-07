@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { CalendarCheck, Clock, MessageCircle } from "lucide-react";
+import { CalendarCheck, Clock, Tag } from "lucide-react";
 import { classesBotao } from "@/components/ui/botao";
 import { business } from "@/lib/business";
 
 const garantias = [
   { icone: Clock, texto: "Atendimento com hora marcada" },
-  { icone: CalendarCheck, texto: "Preços na mesa, sem surpresa" },
-  { icone: MessageCircle, texto: "Confirmação no WhatsApp" },
+  { icone: Tag, texto: "Preço e duração de cada serviço à vista" },
+  { icone: CalendarCheck, texto: "Pedido pronto, sem conversa antes" },
 ];
 
 export function Hero() {
@@ -20,14 +20,12 @@ export function Hero() {
 
       <div className="container-x relative grid gap-12 pb-20 pt-28 sm:pb-28 sm:pt-36 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div className="max-w-xl">
-          <p className="rotulo">{business.assinatura}</p>
-
-          <h1 className="mt-5 font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
+          <h1 className="font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
             Sua beleza
             <span className="block text-dourado-claro">com hora marcada.</span>
           </h1>
 
-          <p className="mt-6 text-lg leading-relaxed text-creme/70">
+          <p className="mt-6 text-lg leading-relaxed text-creme/80">
             Sobrancelhas, cílios, unhas, maquiagem, cabelo e tranças no mesmo lugar. Escolha o
             serviço e o horário aqui — leva menos de um minuto.
           </p>
@@ -41,7 +39,7 @@ export function Hero() {
             </a>
           </div>
 
-          <ul className="mt-10 flex flex-col gap-3 text-sm text-creme/60 sm:flex-row sm:flex-wrap sm:gap-x-6">
+          <ul className="mt-10 flex flex-col gap-3 text-sm text-creme/75 sm:flex-row sm:flex-wrap sm:gap-x-6">
             {garantias.map(({ icone: Icone, texto }) => (
               <li key={texto} className="flex items-center gap-2">
                 <Icone className="h-4 w-4 text-dourado" aria-hidden />

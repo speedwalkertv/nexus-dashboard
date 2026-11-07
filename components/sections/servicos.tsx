@@ -14,18 +14,17 @@ export function Servicos() {
     <section id="servicos" className="scroll-mt-20 bg-ink py-20 sm:py-28">
       <div className="container-x">
         <header className="max-w-2xl">
-          <p className="rotulo">Serviços e preços</p>
-          <h2 className="mt-4 font-display text-4xl leading-tight text-creme sm:text-5xl">
+          <h2 className="font-display text-4xl leading-tight text-creme sm:text-5xl">
             Tudo o que você pode agendar
           </h2>
-          <p className="mt-4 text-creme/60">
+          <p className="mt-4 text-creme/70">
             Os valores abaixo são os praticados no espaço. O tempo é uma
             estimativa de reserva na agenda — pode variar conforme o seu cabelo,
             unha ou pele.
           </p>
         </header>
 
-        <div className="mt-14 space-y-14">
+        <div className="mt-12 space-y-12 sm:mt-14 sm:space-y-14">
           {categorias.map((categoria, i) => {
             const lista = servicosPorCategoria(categoria.id);
             if (lista.length === 0) return null;
@@ -38,24 +37,24 @@ export function Servicos() {
                     <h3 className="mt-4 font-display text-3xl text-creme">
                       {categoria.nome}
                     </h3>
-                    <p className="mt-2 text-sm text-creme/50">
+                    <p className="mt-2 text-sm text-creme/70">
                       {categoria.resumo}
                     </p>
                   </div>
 
-                  <ul className="grid gap-4 sm:grid-cols-2">
+                  <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4">
                     {lista.map((servico) => (
                       <li
                         key={servico.id}
-                        className="flex flex-col overflow-hidden rounded-2xl border border-creme/10 bg-white/[0.03] transition duration-200 ease-suave hover:border-terracota/50 hover:shadow-[0_12px_40px_-24px_rgba(0,0,0,0.7)]"
+                        className="flex overflow-hidden rounded-2xl border border-creme/10 bg-white/[0.03] transition duration-200 ease-suave hover:border-terracota/50 sm:flex-col"
                       >
-                        <div className="relative aspect-square w-full">
+                        <div className="relative w-24 shrink-0 self-stretch sm:aspect-square sm:w-full sm:self-auto">
                           {servico.imagem ? (
                             <Image
                               src={servico.imagem}
                               alt={servico.nome}
                               fill
-                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                              sizes="(max-width: 640px) 96px, (max-width: 1024px) 50vw, 25vw"
                               className="object-cover"
                             />
                           ) : (
@@ -63,9 +62,9 @@ export function Servicos() {
                           )}
                         </div>
 
-                        <div className="flex flex-1 flex-col gap-3 p-6">
-                          <div className="flex items-start justify-between gap-4">
-                            <h4 className="font-medium text-creme">
+                        <div className="flex min-w-0 flex-1 flex-col gap-2.5 p-4 sm:gap-3 sm:p-6">
+                          <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                            <h4 className="font-medium leading-snug text-creme">
                               {servico.nome}
                             </h4>
                             <p className="whitespace-nowrap font-display text-xl text-dourado-claro">
@@ -74,7 +73,7 @@ export function Servicos() {
                           </div>
 
                           {servico.descricao && (
-                            <p className="text-sm leading-relaxed text-creme/60">
+                            <p className="text-sm leading-relaxed text-creme/70">
                               {servico.descricao}
                             </p>
                           )}
@@ -85,7 +84,7 @@ export function Servicos() {
                                 (item) => (
                                   <li
                                     key={item}
-                                    className="rounded-full bg-creme/10 px-2.5 py-1 text-xs text-creme/60"
+                                    className="rounded-full bg-creme/10 px-2.5 py-1 text-xs text-creme/75"
                                   >
                                     {item}
                                   </li>
@@ -95,7 +94,7 @@ export function Servicos() {
                           )}
 
                           <div className="mt-auto flex items-center justify-between border-t border-creme/10 pt-4">
-                            <span className="text-xs tracking-wider text-creme/40">
+                            <span className="text-sm text-creme/70">
                               ≈ {duracaoLabel(servico.duracaoMin)}
                             </span>
                             <BotaoAgendar
